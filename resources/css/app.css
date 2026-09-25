@@ -1,0 +1,381 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../../node_modules/tw-elements/js/**/*.js';
+
+@theme {
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+/* @font-face {
+    font-family: "Neue Haas Grotesk Display Pro";
+    src: url(/public/assets/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayMedium.ttf);
+    font-display: swap;
+} */
+
+@theme {
+    --font-poppins: "Poppins", sans-serif;
+    --font-bebas-neue: "Bebas Neue", sans-serif;
+    --color-primary: #2B2A6C;
+    --color-secondary: #F5B619;
+    --breakpoint-*: initial;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-2xl: 1536px;
+    --breakpoint-4xl: 1920px;
+}
+@layer base {
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.05);
+    }
+    img,
+    video {
+        max-width: 100%;
+        height: revert-layer;
+    }
+    html {
+        scroll-padding-top: 70px;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        overflow-x: hidden;
+        @apply font-poppins;
+    }
+    section {
+        @apply py-[clamp(40px,7vw,100px)] relative;
+    }
+    a {
+        @apply transition-all no-underline;
+    }
+    [role="button"] {
+        @apply cursor-pointer;
+    }
+    p,
+    ul li {
+        @apply text-black font-poppins font-light leading-relaxed text-[clamp(14px,1.25vw,16px)];
+    }
+    p {
+        margin-bottom: 1rem;
+    }
+    button {
+        @apply cursor-pointer;
+    }
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6 {
+        @apply text-black mb-3  leading-tight font-bebas-neue;
+    }
+
+    h1,
+    .h1 {
+        @apply text-[clamp(1.3125rem,1.3125rem+2.5vw,3.3125rem)]
+          sm:text-[clamp(1.6875rem,1.6875rem+2vw,3.3125rem)]
+          lg:text-[clamp(2.0625rem,2.0625rem+1.5vw,3.3125rem)];
+    }
+
+    h2,
+    .h2 {
+        @apply text-[clamp(1.0625rem,1.0625rem+2.2vw,2.8125rem)]
+          sm:text-[clamp(1.3125rem,1.3125rem+1.8vw,2.8125rem)]
+          lg:text-[clamp(1.6875rem,1.6875rem+1.3vw,2.8125rem)] leading-none;
+    }
+
+    .horizontal-scroll-none::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+        background: rgba(0, 0, 0, 0);
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 0.6em;
+        background: rgb(224, 220, 220);
+    }
+    .header_overflow::-webkit-scrollbar {
+        width: 3px;
+        height: 0.6em;
+        background: rgb(224, 220, 220);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-primary);
+        border-radius: 100vw;
+        background-clip: content-box;
+    }
+
+    ::selection {
+        color: var(--color-white);
+        background: #843686;
+        text-shadow: none;
+    }
+}
+@layer utilities {
+
+    .container {
+        @apply px-4 lg:px-3 4xl:px-0 w-full max-w-[100%] sm:max-w-[640px] md:max-w-[645px] lg:max-w-[900px] xl:max-w-[1184px] 2xl:max-w-[1390px] 4xl:max-w-[1720px] mx-auto;
+    }
+}
+
+@layer components {
+    .row {
+        @apply flex flex-wrap -mx-3 [&>div]:px-3 space-y-5 lg:space-y-0;
+    }
+
+
+.btn-primary {
+    @apply inline-flex rounded-full;
+    transition:
+        background-color 300ms ease,
+        box-shadow 300ms ease;
+}
+
+.btn-primary:hover {
+    @apply bg-secondary shadow-md shadow-primary/30;
+}
+
+.btn-link {
+    @apply inline-flex items-center no-underline text-white;
+}
+
+.btn-primary:hover .btn-link {
+    @apply text-primary;
+}
+
+.btn-text {
+    @apply rounded-full bg-primary text-white
+        4xl:text-lg text-base
+        font-bold px-8 py-2
+        font-poppins whitespace-nowrap;
+}
+
+.btn-primary:hover .btn-text {
+    @apply bg-secondary text-primary;
+}
+
+.btn-icon {
+    @apply size-10 2xl:size-11 shrink-0 flex items-center justify-center
+        rounded-full bg-primary text-white;
+
+    transition: transform 300ms ease-out;
+}
+
+.btn-primary:hover .btn-icon {
+    @apply bg-secondary text-primary;
+
+    transform: translateX(-4px);
+}
+
+.btn-icon svg {
+    @apply size-5;
+
+    stroke: currentColor;
+    transition: transform 300ms ease-out;
+}
+
+.btn-primary:hover .btn-icon svg {
+    transform: rotate(225deg) scale(1.3);
+    animation: arrowMove 900ms ease-in-out 300ms infinite;
+}
+
+@keyframes arrowMove {
+    0% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: -10px 0;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+.btn-secondary {
+    @apply inline-flex rounded-full;
+    transition:
+        background-color 300ms ease,
+        box-shadow 300ms ease;
+}
+
+.btn-secondary:hover {
+    @apply bg-primary shadow-md shadow-secondary/30;
+}
+
+.btn-secondary .btn-link {
+    @apply inline-flex items-center no-underline text-primary;
+}
+
+.btn-secondary:hover .btn-link {
+    @apply text-white;
+}
+
+.btn-secondary .btn-text {
+    @apply rounded-full bg-secondary text-primary
+        4xl:text-lg text-base
+        font-bold px-8 py-2
+        font-poppins whitespace-nowrap;
+}
+
+.btn-secondary:hover .btn-text {
+    @apply bg-primary text-white;
+}
+
+.btn-secondary .btn-icon {
+    @apply size-10 2xl:size-11 shrink-0 flex items-center justify-center
+        rounded-full bg-secondary text-primary;
+
+    transition: transform 300ms ease-out;
+}
+
+.btn-secondary:hover .btn-icon {
+    @apply bg-primary text-white;
+
+    transform: translateX(-4px);
+}
+
+.btn-secondary .btn-icon svg {
+    @apply size-5;
+
+    stroke: currentColor;
+    transition: transform 300ms ease-out;
+}
+
+.btn-secondary:hover .btn-icon svg {
+    transform: rotate(225deg) scale(1.3);
+    animation: arrowMove 900ms ease-in-out 300ms infinite;
+}
+
+    /* image filer */
+    .image-white {
+        filter: brightness(0) invert(1);
+    }
+    .image-dark {
+        filter: brightness(0);
+    }
+
+    /* section title */
+    .section-title {
+        @apply max-w-6xl mx-auto;
+    }
+
+    .section-title {
+        @apply text-[25px] lg:text-[30px] xl:text-[35px] 4xl:text-[52px] capitalize mb-2 font-bebas-neue text-black font-normal inline-block leading-[1.2] lg:text-start text-center;
+    }
+
+    /* hero section */
+    .hero-banner {
+        @apply bg-no-repeat bg-center bg-cover min-h-[100dvh] overflow-hidden  z-10;
+    }
+    @media screen and (min-width: 1921px) {
+    .hero-banner {
+        min-height: 945px !important;
+    }
+}
+}
+
+
+
+
+
+/* 
+
+.hoverStyle-image {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.hoverStyle-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform .7s cubic-bezier(.22,1,.36,1),
+                box-shadow .7s cubic-bezier(.22,1,.36,1);
+}
+
+.hoverStyle-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255,255,255,.15),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: left .6s ease;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.hoverStyle-image:hover img {
+    transform: scale(1.05) translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.2);
+}
+
+.hoverStyle-image:hover::before {
+    left: 150%;
+} */
+
+
+#faqAccordion .faq-active-shape {
+    display: none;
+}
+
+#faqAccordion button[aria-expanded="true"] .faq-active-shape {
+    display: block;
+}
+
+#faqAccordion button[aria-expanded="true"] span {
+    color: white;
+    background-color: var(--color-primary);
+    border-radius: 32.5px;
+    padding-left: 38px;
+    padding-block: 18px;
+    max-width: 810px;
+}
+
+#faqAccordion svg {
+    transition: .3s;
+}
+
+    .viewport-section {
+        align-items: center;
+        display: flex
+    }
+
+    @media(min-width: 1536px) {
+        @media not all and (min-width:1921px) {
+            .viewport-section {
+                min-height:100dvh
+            }
+        }
+    }
