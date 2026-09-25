@@ -20,10 +20,10 @@
 } */
 
 @theme {
-    --font-poppins: "Poppins", sans-serif;
-    --font-bebas-neue: "Bebas Neue", sans-serif;
-    --color-primary: #2B2A6C;
-    --color-secondary: #F5B619;
+    --font-zen-dots: "Zen Dots", sans-serif;
+    --font-monsterrat: "Montserrat", sans-serif;
+    --color-primary: #A800D5;
+    --color-secondary: #32003F;
     --breakpoint-*: initial;
     --breakpoint-sm: 640px;
     --breakpoint-md: 768px;
@@ -51,7 +51,7 @@
 
     body {
         overflow-x: hidden;
-        @apply font-poppins;
+        @apply font-monsterrat bg-black text-white;
     }
     section {
         @apply py-[clamp(40px,7vw,100px)] relative;
@@ -64,7 +64,7 @@
     }
     p,
     ul li {
-        @apply text-black font-poppins font-light leading-relaxed text-[clamp(14px,1.25vw,16px)];
+        @apply text-white font-monsterrat font-light leading-relaxed text-sm 2xl:text-base;
     }
     p {
         margin-bottom: 1rem;
@@ -84,7 +84,7 @@
     .h5,
     h6,
     .h6 {
-        @apply text-black mb-3  leading-tight font-bebas-neue;
+        @apply text-white mb-3  leading-tight font-zen-dots;
     }
 
     h1,
@@ -133,7 +133,7 @@
 @layer utilities {
 
     .container {
-        @apply px-4 lg:px-3 4xl:px-0 w-full max-w-[100%] sm:max-w-[640px] md:max-w-[645px] lg:max-w-[900px] xl:max-w-[1184px] 2xl:max-w-[1390px] 4xl:max-w-[1720px] mx-auto;
+        @apply px-4 lg:px-3 4xl:px-0 w-full max-w-[100%] sm:max-w-[640px] md:max-w-[645px] lg:max-w-[900px] xl:max-w-[1184px] 2xl:max-w-[1390px] 4xl:max-w-[1483px] mx-auto;
     }
 }
 
@@ -166,7 +166,7 @@
     @apply rounded-full bg-primary text-white
         4xl:text-lg text-base
         font-bold px-8 py-2
-        font-poppins whitespace-nowrap;
+        font-monsterrat whitespace-nowrap;
 }
 
 .btn-primary:hover .btn-text {
@@ -232,9 +232,8 @@
 
 .btn-secondary .btn-text {
     @apply rounded-full bg-secondary text-primary
-        4xl:text-lg text-base
-        font-bold px-8 py-2
-        font-poppins whitespace-nowrap;
+        4xl:text-lg text-base px-8 py-2
+        font-monsterrat whitespace-nowrap;
 }
 
 .btn-secondary:hover .btn-text {
@@ -280,9 +279,10 @@
     }
 
     .section-title {
-        @apply text-[25px] lg:text-[30px] xl:text-[35px] 4xl:text-[52px] capitalize mb-2 font-bebas-neue text-black font-normal inline-block leading-[1.2] lg:text-start text-center;
+        @apply text-[25px] lg:text-[30px] xl:text-[35px] 4xl:text-[40px] capitalize mb-2 font-zen-dots text-white font-normal inline-block leading-[1.2] lg:text-start text-center;
     }
-
+    .sub-title{
+    @apply text-[15px] uppercase text-white font-monsterrat font-bold inline-block lg:text-start text-center;}
     /* hero section */
     .hero-banner {
         @apply bg-no-repeat bg-center bg-cover min-h-[100dvh] overflow-hidden  z-10;
@@ -379,3 +379,21 @@
             }
         }
     }
+.marquee-track {
+    width: max-content;
+    animation: marquee-left 25s linear infinite;
+}
+
+.marquee-left {
+    animation-name: marquee-left;
+}
+
+@keyframes marquee-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}

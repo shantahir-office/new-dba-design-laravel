@@ -7,7 +7,7 @@
 
         [
             'title' => 'Services',
-            'route' => 'solutions',
+            'route' => 'home',
             // 'dropdown' => [
             //     [
             //         'title' => 'Accounting Tools',
@@ -40,9 +40,7 @@
         ],
        
        
-        ['title' => 'Reviews', 'route' => 'blog'],
-        ['title' => 'Partners', 'route' => 'blog'],
-        ['title' => 'Blog', 'route' => 'blog'],
+        ['title' => 'Contact Us', 'route' => 'contact'],
     ];
     // Updated Active route checker to handle submenus
     function isActiveRoute($route, $currentRoute, $dropdown = null)
@@ -81,16 +79,16 @@
 
 
 {{-- header --}}
-<div class="w-full nav-bar bg-white">
-    <div class="container">
-        <nav class="relative z-11 flex w-full flex-nowrap items-center justify-between xl:flex-wrap xl:justify-start xl:py-3 4xl:py-[30px] px-[12px]"
+<div class="w-full nav-bar absolute top-0 left-0 z-50 border-b border-gray-500/30">
+    <div class="container 4xl:max-w-[1483px]!">
+        <nav class="relative z-11 flex w-full flex-nowrap items-center justify-between xl:flex-wrap xl:justify-start xl:py-3 4xl:py-[23px] px-[12px]"
             data-twe-navbar-ref>
             <div class="flex w-full flex-wrap items-center justify-between gap-2 pt-2 pb-2 xl:pt-0 xl:pb-0">
                 <!-- Logo + Hamburger -->
                 <div class="flex w-full items-center justify-between xl:w-auto xl:justify-start xl:gap-4">
                     <!-- Logo Left -->
                     <a class="text-xl text-white" href="{{ route('home') }}">
-                        <img loading="lazy" src="{{ asset('assets/images/logo/logo.svg') }}" alt="logo white"
+                        <img loading="lazy" src="{{ asset('assets/images/logo/logo-white.png') }}" alt="logo white"
                             width="254" height="47" class="object-contain w-[clamp(200px,14vw,300px)] h-auto">
                     </a>
                     <!-- Hamburger Right for Mobile -->
@@ -109,7 +107,7 @@
                 </div>
                 <div class="!visible mb-2 xl:mb-0 hidden flex-grow basis-[100%] items-center gap-[90px] xl:mt-0 xl:!flex xl:basis-auto bg-primary xl:bg-transparent p-4 xl:p-0 rounded-md"
                     id="navbarSupportedContent1" data-twe-collapse-item>
-                    <ul class="list-style-none menu-items xl:ms-auto flex flex-col ps-0 xl:flex-row gap-4 xl:gap-10 2xl:gap-18 4xl:gap-22 xl:items-baseline"
+                    <ul class="list-style-none menu-items xl:ms-auto flex flex-col ps-0 xl:flex-row gap-4 xl:gap-10 xl:gap-7 xl:items-baseline"
                         data-twe-navbar-nav-ref>
                         @foreach ($menuItems as $item)
                             @if (isset($item['dropdown']))
@@ -194,7 +192,7 @@
                                 </li>
                             @else
                                 <li class="relative" data-twe-nav-item-ref>
-                                    <a class="p-0 transition-all duration-200 hover:ease-in-out hover:text-primary text-black text-sm 2xl:text-lg {{ $currentRoute === $item['route'] ? '!text-primary font-bold' : 'font-normal' }}"
+                                    <a class="p-0 transition-all duration-200 hover:ease-in-out hover:text-primary text-white text-sm 2xl:text-base font-zen-dots {{ $currentRoute === $item['route'] ? '!text-primary font-bold' : 'font-normal' }}"
                                         href="{{ route($item['route']) }}" data-twe-nav-link-ref>
                                         {{ $item['title'] }}
                                     </a>
@@ -202,9 +200,9 @@
                             @endif
                         @endforeach
                     </ul>
-                    <div class="flex items-center justify-center">
+                    {{-- <div class="flex items-center justify-center">
                         <x-live-chat-button text="Contact Us" tag="a" href="{{ route('contact') }}"  />
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </nav>
@@ -216,7 +214,7 @@
 <div class="fixed top-0! left-0 z-[1045] flex w-[250px] h-full -translate-x-full flex-col border-none bg-white bg-clip-padding text-primary shadow-sm outline-none transition duration-300 ease-in-out [&[data-twe-offcanvas-show]]:translate-x-0 xl:hidden"
     tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-twe-offcanvas-init>
     <div class="flex items-center justify-between p-4 border-gray-200 border-b">
-        <img src="{{ asset('assets/images/logo/logo.svg') }}" alt="logo white" width="150" height="80"
+        <img src="{{ asset('assets/images/logo/logo-white.png') }}" alt="logo white" width="150" height="80"
             class="object-contain h-auto" loading="lazy">
         <button type="button"
             class="box-content rounded-none border-none text-black hover:text-black hover:no-underline focus:text-neutral-800 focus:opacity-100 focus:shadow-none focus:outline-none"
